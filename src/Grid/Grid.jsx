@@ -1,6 +1,17 @@
 import React from "react";
+import { Droplet } from "../class";
+import $ from "jquery";
 
-const Grid = ({ size }) => {
+const Grid = ({ size, droplets, setDroplets }) => {
+	const createDroplet = (td) => {
+		console.warn($(".grid-container"));
+		setDroplets((state) => {
+			state.push(new Droplet());
+			return state;
+		});
+		console.warn({ droplets });
+	};
+
 	return (
 		<div
 			className="grid-container"
@@ -26,6 +37,7 @@ const Grid = ({ size }) => {
 										padding: 0,
 										margin: 0,
 									}}
+									onClick={() => createDroplet(this)}
 								></td>
 							))}
 						</tr>

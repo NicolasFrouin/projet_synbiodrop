@@ -1,8 +1,17 @@
 import "./App.css";
 import ReteMain from "./Rete/ReteMain";
 import Grid from "./Grid/Grid";
+import { useEffect, useState } from "react";
+import { Droplet } from "./class";
 
 function App() {
+	const [droplets, setDroplets] = useState([]);
+
+	useEffect(() => {
+		const d = new Droplet();
+		console.log(d);
+	}, []);
+
 	return (
 		<div className="App">
 			<div
@@ -12,7 +21,7 @@ function App() {
 				}}
 			>
 				<ReteMain></ReteMain>
-				<Grid size={13}></Grid>
+				<Grid size={13} droplets={droplets} setDroplets={setDroplets}></Grid>
 			</div>
 		</div>
 	);
