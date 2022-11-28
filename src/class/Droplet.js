@@ -8,15 +8,9 @@ export class Droplet {
 	}
 
 	draw() {
-		return (
-			<div
-				className="drolpet"
-				style={{
-					backgroundColor: this.getColor(),
-					aspectRatio: "1/1",
-				}}
-			></div>
-		);
+		return `<div className='droplet' id='droplet_${this.x + "_" + this.y}' style='height:100%;width:100%;${
+			this.color ? "background-color:" + this.color : ""
+		}'></div>`;
 	}
 
 	getColor() {

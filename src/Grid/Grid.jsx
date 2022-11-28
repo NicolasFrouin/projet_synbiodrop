@@ -1,49 +1,67 @@
 import React from "react";
 import { Droplet } from "../class";
 import $ from "jquery";
+import "./Grid.css";
+import { GridDropletMenu } from "./GridDropletMenu";
 
 const Grid = ({ size, droplets, setDroplets }) => {
-	const createDroplet = (td) => {
-		console.warn($(".grid-container"));
-		setDroplets((state) => {
-			state.push(new Droplet());
-			return state;
-		});
-		console.warn({ droplets });
+	const cellClick = (cellObj, option) => {
+		// const e = new NodeEditor("demo@0.1.0");
+		// e.trigger("process");
+		const dataCell = $(cellObj.target);
+		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
+			let coordsPre = dataCell[0].id
+				.slice(dataCell[0].tagName == "TD" ? 3 : 8)
+				.split("_")
+				.map((v) => parseInt(v));
+			let coords = { x: coordsPre[0], y: coordsPre[1] };
+			let oldDrop = droplets.findIndex((d) => d.x === coords.x && d.y === coords.y);
+			setDroplets((state) => {
+				state[oldDrop].color = option.color;
+				return state;
+			});
+			$(`#droplet_${coords.x + "_" + coords.y}`).css({ backgroundColor: option.color });
+		} else {
+			let coordsPre = cellObj.target.id
+				.slice(3)
+				.split("_")
+				.map((v) => parseInt(v));
+			let coords = { x: coordsPre[0], y: coordsPre[1] };
+			const droplet = new Droplet(coords, option.color);
+			setDroplets((state) => {
+				state.push(droplet);
+				return state;
+			});
+			dataCell.append(droplet.draw());
+		}
 	};
 
 	return (
-		<div
-			className="grid-container"
-			style={{
-				margin: "1rem",
-			}}
-		>
-			<table
-				style={{
-					borderSpacing: 0,
-					borderCollapse: "collapse",
-				}}
-			>
+		<div className="grid-container">
+			<table id="droplet-grid">
 				<tbody>
-					{Array.from({ length: size }).map(() => (
-						<tr style={{}}>
-							{Array.from({ length: size }).map(() => (
-								<td
-									style={{
-										height: "2.5rem",
-										width: "2.5rem",
-										border: "solid 1px #16161d",
-										padding: 0,
-										margin: 0,
-									}}
-									onClick={() => createDroplet(this)}
-								></td>
+					{Array.from({ length: size }, (_, n) => size - n).map((trv) => (
+						<tr id={`tr_${trv}`} key={`tr_${trv}`}>
+							{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => (
+								<td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}></td>
 							))}
 						</tr>
 					))}
 				</tbody>
 			</table>
+			<GridDropletMenu
+				targetId={"droplet-grid"}
+				options={[
+					{ name: "blue", color: "blue" },
+					{ name: "yellow", color: "yellow" },
+					{ name: "red", color: "red" },
+					{ name: "green", color: "green" },
+					{ name: "purple", color: "purple" },
+					{ name: "brown", color: "brown" },
+					{ name: "black", color: "black" },
+				]}
+				itemClick={cellClick}
+			/>
 		</div>
 	);
 };
