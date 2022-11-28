@@ -7795,10 +7795,25 @@ resolve@^2.0.0-next.3:
     path-parse "^1.0.7"
     supports-preserve-symlinks-flag "^1.0.0"
 
+rete-area-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/rete-area-plugin/-/rete-area-plugin-0.2.1.tgz#0afe4581baf99c36c904d08e4f0a835ed6604d86"
+  integrity sha512-MOeQRmSC/gjkZIMo0fNuomzunRplALqd86V+jSzuhBYchCw0wshv2/iXu4xRxVZkw9r1HpZxlz9gLkbatCbXMw==
+
 rete-connection-plugin@^0.9.0:
   version "0.9.0"
   resolved "https://registry.yarnpkg.com/rete-connection-plugin/-/rete-connection-plugin-0.9.0.tgz#3a6df36f55493a5c2ea021ae3147a0f0a6ada6ed"
   integrity sha512-D+H1yAONBBFYXeMkz0sdpDm76XiqcF2N3FduaqMUqcoThocMaFB2O8TX3nJc76ksuYaLYqo/+OLXTxNa+5HQYQ==
+
+rete-context-menu-plugin@^1.0.0-alpha9:
+  version "1.0.0-alpha9"
+  resolved "https://registry.yarnpkg.com/rete-context-menu-plugin/-/rete-context-menu-plugin-1.0.0-alpha9.tgz#b7323255166362f3559f82a125f3b1b06d717630"
+  integrity sha512-dtW+IIlzDSe4z36ygcB77QKpczJnzS1AdC2C6Wx0QkhU5+mL7axU9Tp5AUcVH/Y7RLXskAiHX3GAO6ZGgI2iSg==
+
+rete-react-render-plugin@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/rete-react-render-plugin/-/rete-react-render-plugin-0.3.0.tgz#ee252f2d1d26b141813f5cab672b1a582cef79e1"
+  integrity sha512-iNEpJjqHO950WBE5CWw+WlFbV3D98Gx5tgnBp5y5ZniHEMzsqE0UuBjD9OdStVd+KmJfDEePoMiuOeFZPhEwHQ==
 
 rete-vue-render-plugin@^1.0.0-rc2:
   version "1.0.0-rc2"
