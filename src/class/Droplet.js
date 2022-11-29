@@ -7,6 +7,11 @@ export class Droplet {
 		this.color = color;
 		this.temperature = null;
 		this.size = size;
+		this.group = null;
+	}
+
+	group(dropletGroup) {
+		this.group = dropletGroup;
 	}
 
 	draw() {
@@ -15,16 +20,11 @@ export class Droplet {
 		}'></div>`;
 	}
 
-	getColor() {
-		return this.color.substring(1);
-	}
-
 	move(coords) {
 		if (!this.canMove(coords)) return false;
 		const oldCoords = { x: this.x, y: this.y };
 		const oldDataCell = $(`#td_${oldCoords.x + "_" + oldCoords.y}`);
 		const newDataCell = $(`#td_${coords.x + "_" + coords.y}`);
-		console.log({ oldDataCell, newDataCell });
 		this.x = coords.x;
 		this.y = coords.y;
 		oldDataCell.empty();
@@ -32,7 +32,8 @@ export class Droplet {
 	}
 
 	canMove(coords) {
-		const dataCellToMove = $(`#td_${coords.x + "_" + coords.y}`);
-		return dataCellToMove.children().length == 0;
+		return $(`#td_${coords.x + "_" + coords.y}`).children().length == 0;
 	}
+
+	fusion(droplet) {}
 }

@@ -10,9 +10,11 @@ class MoveComponent extends React.Component {
 		});
 		this.props.putData("posX", 1);
 		this.props.putData("posY", 1);
+		this.props.context.setEditor(this.props.emitter);
 	}
 	onChange(event, pos) {
-		const value = parseInt(event.target.value);
+		let value = parseInt(event.target.value);
+		if (value > this.props.context.size) value = this.props.context.size;
 		if (pos == "x") {
 			this.setState({ posX: value });
 			this.props.putData("posX", value);
@@ -20,7 +22,7 @@ class MoveComponent extends React.Component {
 			this.setState({ posY: value });
 			this.props.putData("posY", value);
 		}
-		this.props.emitter.trigger("process");
+		this.props.context.setEditor(this.props.emitter);
 	}
 
 	render() {
@@ -33,6 +35,7 @@ class MoveComponent extends React.Component {
 						value={this.state.posX}
 						type={"number"}
 						min={1}
+						max={this.props.context.size}
 						id={"inputX"}
 					/>
 				</label>
@@ -43,18 +46,11 @@ class MoveComponent extends React.Component {
 						value={this.state.posY}
 						type={"number"}
 						min={1}
+						max={this.props.context.size}
 						id={"inputY"}
 					/>
 				</label>
 			</div>
-		);
-		console.log({ state: this.state });
-		return (
-			<select value={this.state.value} onChange={this.onChange.bind(this)}>
-				{this.props.context.droplets.map((v, i) => {
-					return <option value={i}>{v.color}</option>;
-				})}
-			</select>
 		);
 	}
 }
@@ -67,7 +63,6 @@ export class MoveControl extends Control {
 		this.props = {
 			emitter,
 			id,
-			// value,
 			context,
 			putData: (key, value) => this.putData(key, value),
 		};

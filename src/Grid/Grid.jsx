@@ -5,9 +5,10 @@ import $ from "jquery";
 import "./Grid.css";
 import { GridDropletMenu } from "./GridDropletMenu";
 import { AppContext } from "../App";
+import { ContextDropletMenu } from "./ContextDropletMenu";
 
-const Grid = ({ size }) => {
-	const { droplets, setDroplets } = useContext(AppContext);
+const Grid = ({ style = {} }) => {
+	const { droplets, setDroplets, size } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
@@ -38,7 +39,7 @@ const Grid = ({ size }) => {
 	};
 
 	return (
-		<div className="grid-container">
+		<div className="grid-container" style={style}>
 			<table id="droplet-grid">
 				<tbody>
 					{Array.from({ length: size }, (_, n) => size - n).map((trv) => (
@@ -53,16 +54,17 @@ const Grid = ({ size }) => {
 			<GridDropletMenu
 				targetId={"droplet-grid"}
 				options={[
-					{ name: "blue", color: "blue" },
-					{ name: "yellow", color: "yellow" },
-					{ name: "red", color: "red" },
-					{ name: "green", color: "green" },
-					{ name: "purple", color: "purple" },
-					{ name: "brown", color: "brown" },
-					{ name: "black", color: "black" },
+					{ name: "Bleu", color: "blue" },
+					{ name: "Jaune", color: "yellow" },
+					{ name: "Rouge", color: "red" },
+					{ name: "Vert", color: "green" },
+					{ name: "Violet", color: "purple" },
+					{ name: "Marron", color: "brown" },
+					{ name: "Noir", color: "black" },
 				]}
 				itemClick={cellClick}
 			/>
+			<ContextDropletMenu targetId={"droplet-grid"} />
 		</div>
 	);
 };

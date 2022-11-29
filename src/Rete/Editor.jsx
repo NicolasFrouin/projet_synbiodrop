@@ -5,8 +5,6 @@ import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
 import { AddComponent, MoveComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
-import { useContext } from "react";
-import { AppContext } from "../App";
 
 export default async function (container, context) {
 	var components = [new AddComponent(), new SelectorComponent(context), new MoveComponent(context)];
@@ -59,6 +57,5 @@ export default async function (container, context) {
 
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
-	// editor.trigger("process");
 	return { edit: editor, engi: engine };
 }
