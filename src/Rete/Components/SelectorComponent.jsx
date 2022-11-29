@@ -10,7 +10,6 @@ export class SelectorComponent extends Rete.Component {
 	builder(node) {
 		var out = new Rete.Output("droplet", "Goutte", dropletSocket);
 		var ctrl = new SelectorControl(this.editor, "greeting", "#username");
-
 		return node.addOutput(out).addControl(ctrl);
 	}
 

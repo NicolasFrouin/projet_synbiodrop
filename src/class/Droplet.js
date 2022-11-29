@@ -18,7 +18,18 @@ export class Droplet {
 	}
 
 	move(coords) {
+		this.remove();
 		this.x = coords.x;
 		this.y = coords.y;
 	}
+
+	remove(){
+		this.x = null;
+        this.y = null;
+        this.color = null;
+        this.temperature = null;
+        this.size = null;
+	}
+
+
 }

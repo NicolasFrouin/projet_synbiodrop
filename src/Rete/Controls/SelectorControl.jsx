@@ -19,7 +19,15 @@ class SelectorComponent extends React.Component {
 	}
 
 	render() {
-		return <input value={this.state.name} onChange={this.onChange.bind(this)} />;
+		return (<>
+		<input value={this.state.name} type="text" list="data" onChange={this.onChange.bind(this)} />
+					<datalist id="data">
+ 						{this.state.data.map((item, key) =>
+      						<option key={1} value={item.color} />
+    					)}
+					</datalist>
+		</>
+					)
 	}
 }
 
