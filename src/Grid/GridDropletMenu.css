@@ -1,0 +1,44 @@
+.dropletMenuListWrapper {
+	background-color: #5e35b1;
+}
+
+.dropletMenuListItem {
+	color: white;
+}
+
+.dropletMenuListItem:hover{
+	font-weight: 900;
+}
+
+.contextMenu {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	position: absolute;
+	height: auto;
+	width: fit-content;
+}
+
+.optionsList {
+	padding: 7px;
+	min-width: 107px;
+	border-radius: 4px;
+}
+
+.optionListItem {
+	padding: 4px;
+	border-radius: 3px;
+	list-style-type: none;
+}
+
+.optionListItem:hover {
+	cursor: pointer;
+}
+
+.wrapper {
+	height: 100vh;
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	grid-template-rows: 1fr 1fr;
+}
