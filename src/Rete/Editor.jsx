@@ -89,12 +89,12 @@ class EndPosComponent extends Rete.Component {
 		// var ctrl = new MyControl(this.editor, "greeting", "#username");
 		// return node.addInput(out).addControl(ctrl);
 		node.addInput(new Rete.Input('key1', 'Number',numSocket));
-		node.addControl(new NumControl(this.editor, "num", node));
+		node.addControl(new NumControl(this.editor, "numEnd", node));
 		return node;
 	}
 
 	worker(node, inputs, outputs) {
-		console.log("test" +node.data.num);
+		console.log("test" +node.data.numEnd);
 	}
 }
 
