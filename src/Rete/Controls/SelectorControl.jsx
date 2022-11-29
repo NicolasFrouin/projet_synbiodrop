@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Control } from "rete";
 
 class SelectorComponent extends React.Component {
@@ -6,6 +6,7 @@ class SelectorComponent extends React.Component {
 	componentDidMount() {
 		this.setState({
 			name: this.props.name,
+			context: this.props.context,
 		});
 		console.log({ props: this.props });
 		this.props.putData(this.props.id, this.props.name);
@@ -16,6 +17,7 @@ class SelectorComponent extends React.Component {
 		this.setState({
 			name: event.target.value,
 		});
+		console.log(this.state.context);
 	}
 
 	render() {
@@ -24,7 +26,7 @@ class SelectorComponent extends React.Component {
 }
 
 export class SelectorControl extends Control {
-	constructor(emitter, id, name) {
+	constructor(emitter, id, name, context) {
 		super(id);
 		this.render = "react";
 		this.component = SelectorComponent;
@@ -32,6 +34,7 @@ export class SelectorControl extends Control {
 			emitter,
 			id,
 			name,
+			context,
 			putData: () => this.putData.apply(this, arguments),
 		};
 	}

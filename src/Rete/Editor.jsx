@@ -5,10 +5,11 @@ import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
 import { AddComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
+import { useContext } from "react";
+import { AppContext } from "../App";
 
-export default async function (container) {
-	console.log(container);
-	var components = [new AddComponent(), new SelectorComponent()];
+export default async function (container, context) {
+	var components = [new AddComponent(), new SelectorComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 	editor.use(ConnectionPlugin);
@@ -24,7 +25,7 @@ export default async function (container) {
 		engine.register(c);
 	});
 
-	editor.on("process nodecreated noderemoved connectioncreated connectionremoved", async () => {
+	editor.on("process", async () => {
 		console.log("process");
 		await engine.abort();
 		await engine.process(editor.toJSON());
@@ -58,5 +59,6 @@ export default async function (container) {
 
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
-	editor.trigger("process");
+	// editor.trigger("process");
+	return editor;
 }
