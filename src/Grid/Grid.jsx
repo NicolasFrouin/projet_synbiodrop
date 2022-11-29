@@ -1,14 +1,14 @@
-import React from "react";
+import React, { useContext } from "react";
 import Rete from "rete";
 import { Droplet } from "../class";
 import $ from "jquery";
 import "./Grid.css";
 import { GridDropletMenu } from "./GridDropletMenu";
+import { AppContext } from "../App";
 
-const Grid = ({ size, droplets, setDroplets }) => {
+const Grid = ({ size }) => {
+	const { droplets, setDroplets } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
-		// const e = new Rete.NodeEditor("demo@0.1.0", <div></div>);
-		// e.trigger("process");
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
 			let coordsPre = dataCell[0].id

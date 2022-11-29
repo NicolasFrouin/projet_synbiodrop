@@ -9,13 +9,22 @@ export const AppContext = createContext();
 function App() {
 	const [droplets, setDroplets] = useState([]);
 	const [editor, setEditor] = useState(null);
+	const [engine, setEngine] = useState(null);
+	const [data, setData] = useState({});
 
-	useEffect(() => {}, []);
+	useEffect(() => {
+		if (editor != null) {
+			setData(editor.toJSON());
+			console.log(editor.toJSON());
+		}
+	}, [editor, engine]);
 
-	const process = () => editor.trigger("process");
+	const process = () => {
+		console.log(data.nodes);
+	};
 
 	return (
-		<AppContext.Provider value={{ droplets, setDroplets, editor, setEditor }}>
+		<AppContext.Provider value={{ droplets, setDroplets, editor, setEditor, engine, setEngine }}>
 			<div className="App">
 				<div
 					style={{

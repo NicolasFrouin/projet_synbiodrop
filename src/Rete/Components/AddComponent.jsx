@@ -17,6 +17,6 @@ export class AddComponent extends Rete.Component {
 	}
 
 	worker(node, inputs, outputs) {
-		console.log(node.data.greeting);
+		console.log({ node, inputs, outputs });
 	}
 }
