@@ -6,9 +6,49 @@ import AreaPlugin from "rete-area-plugin";
 import { MyNode } from "./Node";
 import { MyControl } from "./Control";
 import myNodes from '../index'
+import HistoryPlugin from 'rete-history-plugin';
 
 var numSocket = new Rete.Socket("Number value");
 
+
+class ColorComponent extends Rete.Component {
+	constructor() {
+		super("Color");
+	}
+
+	builder(node) {
+		console.log("création de la node")
+		var out = new Rete.Output("color", "Color", numSocket);
+		var ctrl = new MyControl(this.editor, "colorName");
+		console.log("node créée")
+		return node.addControl(ctrl).addOutput(out);
+	}
+	// builder(node) {
+	// 	var inp = new Rete.Input("num1", "Number", numSocket);
+	// 	var out = new Rete.Output("num", "Number", numSocket);
+	// 	var ctrl = new MyControl(this.editor, "greeting", "#username");
+	// 	console.log('build node');
+	// 	return node.addInput(inp).addOutput(out).addControl(ctrl);
+	// }
+
+	worker(node, inputs, outputs) {
+		// console.log(node.data.greeting);
+		// console.log(inputs);
+		// console.log(outputs);
+		// this.editor.removeNode(node);
+		console.log("entrée de worker");
+		myNodes.push(node);
+		console.log(myNodes);
+		console.log("sortie de worker");
+		// this.editor.trigger('undo');
+		// this.editor.trigger('redo');
+		console.log("try");
+		console.log(node.id);
+		console.log(node);
+		console.log('-------------------------- end --------------------------')
+		// console.log(this.editor.on('nodeselect', () => { }))
+	}
+}
 
 class AddComponent extends Rete.Component {
 	constructor() {
@@ -16,18 +56,11 @@ class AddComponent extends Rete.Component {
 	}
 
 	builder(node) {
-		if (myNodes.length === 0) {
-			var inp = new Rete.Input("n", "b", numSocket);
-			var out = new Rete.Output("num", '0', numSocket);
-			var ctrl = new MyControl(this.editor, "name", "name");
-		} else {
-			var inp = new Rete.Input("n", toString(myNodes[myNodes.length - 1]), numSocket);
-			var out = new Rete.Output("n", toString(myNodes[myNodes.length - 1]), numSocket);
-			var ctrl = new MyControl(this.editor, "name", "name");
-		}
-
-		console.log('build node');
-		return node.addInput(inp).addOutput(out).addControl(ctrl);
+		console.log("création de add")
+		var out = new Rete.Input("add", "Add", numSocket);
+		var ctrl = new MyControl(this.editor, "addName");
+		console.log("add créé")
+		return node.addControl(ctrl).addOutput(out);
 	}
 	// builder(node) {
 	// 	var inp = new Rete.Input("num1", "Number", numSocket);
@@ -53,7 +86,7 @@ class AddComponent extends Rete.Component {
 		console.log(node);
 		console.log(inputs);
 		console.log(outputs);
-		if (node.id === 2) {
+		if (node.id === 1) {
 			console.log("success")
 			// console.log(node);
 			// console.log(this.editor.node)
@@ -73,7 +106,7 @@ class AddComponent extends Rete.Component {
 
 export default async function (container) {
 	console.log(container);
-	var components = [new AddComponent()];
+	var components = [new ColorComponent(), new AddComponent()];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 	editor.use(ConnectionPlugin);
@@ -81,6 +114,7 @@ export default async function (container) {
 		component: MyNode,
 	});
 	editor.use(ContextMenuPlugin);
+	editor.use(HistoryPlugin, { keyboard: true });
 
 	var engine = new Rete.Engine("demo@0.1.0");
 
@@ -95,31 +129,31 @@ export default async function (container) {
 		await engine.process(editor.toJSON());
 	});
 
-	editor.fromJSON({
-		id: "demo@0.1.0",
-		nodes: {
-			1: {
-				id: 1,
-				data: {},
-				inputs: { num1: { connections: [] } },
-				outputs: {
-					num: { connections: [{ node: 2, input: "num1", data: {} }] },
-				},
-				position: [-285.5, -105.375],
-				name: "Add",
-			},
-			2: {
-				id: 2,
-				data: {},
-				inputs: {
-					num1: { connections: [{ node: 1, output: "num", data: {} }] },
-				},
-				outputs: { num: { connections: [] } },
-				position: [-16.5, -99.375],
-				name: "Add",
-			},
-		},
-	});
+	// editor.fromJSON({
+	// 	id: "demo@0.1.0",
+	// 	nodes: {
+	// 		1: {
+	// 			id: 1,
+	// 			data: {},
+	// 			inputs: { num1: { connections: [] } },
+	// 			outputs: {
+	// 				num: { connections: [{ node: 2, input: "num1", data: {} }] },
+	// 			},
+	// 			position: [-285.5, -105.375],
+	// 			name: "Add",
+	// 		},
+	// 		2: {
+	// 			id: 2,
+	// 			data: {},
+	// 			inputs: {
+	// 				num1: { connections: [{ node: 1, output: "num", data: {} }] },
+	// 			},
+	// 			outputs: { num: { connections: [] } },
+	// 			position: [-16.5, -99.375],
+	// 			name: "Add",
+	// 		},
+	// 	},
+	// });
 
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
