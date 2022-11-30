@@ -36,7 +36,6 @@ const Grid = ({ size, droplets, setDroplets }) => {
 			dataCell.append(droplet.draw());
 		}
 	};
-
 	return (
 		<div className="grid-container">
 			<table id="droplet-grid">

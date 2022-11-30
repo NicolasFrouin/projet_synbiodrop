@@ -7,9 +7,10 @@ import { AddComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
 import { useContext } from "react";
 import { AppContext } from "../App";
+import { MoveToComponent } from "./Components/MoveToComponent";
 
 export default async function (container, context) {
-	var components = [new AddComponent(), new SelectorComponent(context)];
+	var components = [new AddComponent(), new SelectorComponent(context), new MoveToComponent()];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 	editor.use(ConnectionPlugin);

@@ -19,15 +19,14 @@ class SelectorComponent extends React.Component {
 		});
 		console.log(this.state.context);
 	}
-
 	render() {
 		return (<>
-		<input value={this.state.name} type="text" list="data" onChange={this.onChange.bind(this)} />
-					<datalist id="data">
- 						{this.state.data.map((item, key) =>
-      						<option key={1} value={item.color} />
+		{/* <input value={this.state.name} type="text" list="data" onChange={this.onChange.bind(this)} /> */}
+					<select id="data"value={this.state.name} onChange={this.onChange.bind(this)}>
+ 						{this.props.context.droplets.map((item, key) =>
+      						<option key={key} value={item.color}>{item.color}</option>
     					)}
-					</datalist>
+					</select>
 		</>
 					)
 	}
