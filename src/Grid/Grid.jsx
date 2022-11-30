@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Rete from "rete";
 import { Droplet } from "../class";
 import $ from "jquery";
@@ -8,6 +8,14 @@ import { AppContext } from "../App";
 import { ContextDropletMenu } from "./ContextDropletMenu";
 
 const Grid = ({ style = {} }) => {
+	const [gridArray, setGridArray] = useState([]);
+
+	useEffect(() => {
+		const subArray = Array.from({ length: size }, () => 0);
+		const gridArraytmp = Array.from({ length: size }, (_, n) => n + 1).map(() => [...subArray]);
+		setGridArray(gridArraytmp);
+	}, []);
+
 	const { droplets, setDroplets, size } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
 		const dataCell = $(cellObj.target);
@@ -34,6 +42,11 @@ const Grid = ({ style = {} }) => {
 				state.push(droplet);
 				return state;
 			});
+			setGridArray((state) => {
+				state[size - coords.y][coords.x - 1] = 1;
+				console.log(size - coords.x, size - coords.y, state);
+				return state;
+			});
 			dataCell.append(droplet.draw());
 		}
 	};
@@ -42,13 +55,15 @@ const Grid = ({ style = {} }) => {
 		<div className="grid-container" style={style}>
 			<table id="droplet-grid">
 				<tbody>
-					{Array.from({ length: size }, (_, n) => size - n).map((trv) => (
-						<tr id={`tr_${trv}`} key={`tr_${trv}`}>
-							{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => (
-								<td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}></td>
-							))}
-						</tr>
-					))}
+					{Array.from({ length: size }, (_, n) => size - n).map((trv, tri) => {
+						return (
+							<tr id={`tr_${trv}`} key={`tr_${trv}`}>
+								{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => {
+									return <td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}></td>;
+								})}
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 			<GridDropletMenu
