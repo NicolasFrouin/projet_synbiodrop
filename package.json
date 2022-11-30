@@ -14,6 +14,7 @@
     "rete-area-plugin": "^0.2.1",
     "rete-connection-plugin": "^0.9.0",
     "rete-context-menu-plugin": "^1.0.0-alpha9",
+    "rete-dock-plugin": "^0.2.1",
     "rete-history-plugin": "^0.2.2",
     "rete-react-render-plugin": "^0.3.0",
     "rete-vue-render-plugin": "^1.0.0-rc2",

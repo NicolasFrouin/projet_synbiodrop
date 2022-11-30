@@ -33,10 +33,6 @@ function findPath(world, pathStart, pathEnd) {
 				S = y + 1,
 				E = x + 1,
 				W = x - 1,
-				// myN = N > -1 && canWalkHere(x, N),
-				// myS = S < worldHeight && canWalkHere(x, S),
-				// myE = E < worldWidth && canWalkHere(E, y),
-				// myW = W > -1 && canWalkHere(W, y),
 				res = [];
 			res.push({ x: x, y: N });
 			res.push({ x: E, y: y });

@@ -7815,6 +7815,11 @@ rete-context-menu-plugin@^1.0.0-alpha9:
   resolved "https://registry.yarnpkg.com/rete-context-menu-plugin/-/rete-context-menu-plugin-1.0.0-alpha9.tgz#b7323255166362f3559f82a125f3b1b06d717630"
   integrity sha512-dtW+IIlzDSe4z36ygcB77QKpczJnzS1AdC2C6Wx0QkhU5+mL7axU9Tp5AUcVH/Y7RLXskAiHX3GAO6ZGgI2iSg==
 
+rete-dock-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/rete-dock-plugin/-/rete-dock-plugin-0.2.1.tgz#d5537568eac539236bbe52bea3491fa85b1b3715"
+  integrity sha512-o3KGrv7HA2AcnGL/K1VfwZ+yUgmE/wejLGsvhFi6nwJnf8IdiMiEvmISZkiER6lgc/tGmh2Ptyb/cLcCMgFkVQ==
+
 rete-history-plugin@^0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/rete-history-plugin/-/rete-history-plugin-0.2.2.tgz#e8c9036e75be4cc2d95b6c43837ecf6ad6116208"
