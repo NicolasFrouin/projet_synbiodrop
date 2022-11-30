@@ -1,13 +1,15 @@
 import Rete from "rete";
+import DockPlugin from 'rete-dock-plugin';
+import MinimapPlugin from 'rete-minimap-plugin';
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import { AddComponent, MoveComponent, SelectorComponent } from "./Components";
+import { MergeDropletComponent, MoveComponent, SelectorComponent, DividerDropletComponent } from "./Components";
 import { MyNode } from "./Nodes";
 
 export default async function (container, context) {
-	var components = [new AddComponent(), new SelectorComponent(context), new MoveComponent(context)];
+	var components = [new SelectorComponent(context), new MoveComponent(context), new MergeDropletComponent(context), new DividerDropletComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 	editor.use(ConnectionPlugin);
@@ -15,7 +17,12 @@ export default async function (container, context) {
 		component: MyNode,
 	});
 	editor.use(ContextMenuPlugin);
-
+	editor.use(MinimapPlugin);	
+	// await editor.use(DockPlugin, {
+	// 	container: document.querySelector('.dock'),
+	// 	itemClass: 'dock-item',
+	// 	plugins: [ReactRenderPlugin]
+	// });
 	var engine = new Rete.Engine("demo@0.1.0");
 
 	components.map((c) => {

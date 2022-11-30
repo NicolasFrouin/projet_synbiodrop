@@ -29,7 +29,7 @@ const Grid = ({ style = {} }) => {
 				state[oldDrop].color = option.color;
 				return state;
 			});
-			$(`#droplet_${coords.x + "_" + coords.y}`).css({ backgroundColor: option.color });
+			$(`#droplet_${coords.x + "_" + coords.y}`).css({ backgroundColor: option.color});
 		} else {
 			let coordsPre = cellObj.target.id
 				.slice(3)

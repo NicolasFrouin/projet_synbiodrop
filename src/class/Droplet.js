@@ -1,5 +1,5 @@
 import $ from "jquery";
-
+import "./Droplet.css"
 export class Droplet {
 	constructor(coords = { x: 0, y: 0 }, color = "#000000", size = 1) {
 		this.x = coords.x;
@@ -17,7 +17,7 @@ export class Droplet {
 	draw() {
 		return `<div className='droplet' id='droplet_${this.x + "_" + this.y}' style='height:100%;width:100%;${
 			this.color ? "background-color:" + this.color : ""
-		}'></div>`;
+		};border-radius:50%;animation: moving .2s ease-in-out alternate;'></div>`;
 	}
 
 	move(coords) {

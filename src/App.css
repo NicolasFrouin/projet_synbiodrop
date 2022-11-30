@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+@keyframes moving {
+  0% {transform: translate(calc(var(--size) / -2.5));}
+  30% {transform: translate(calc(var(--size) / -10));} 
+  70% {transform: translate(calc(var(--size) / 10));}
+  100% {transform: translate(calc(var(--size) / 2.5));}
+}

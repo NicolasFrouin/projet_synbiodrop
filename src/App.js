@@ -58,6 +58,7 @@ function App() {
 							margin: "1rem",
 							display: "flex",
 							flexDirection: "column",
+							position: "relative",
 						}}
 					></ReteMain>
 					<div
