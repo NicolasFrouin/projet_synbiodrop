@@ -12,6 +12,7 @@ function App() {
 	const [editor, setEditor] = useState(null);
 	const [engine, setEngine] = useState(null);
 	const [size, setSize] = useState(13);
+	const [gridArray, setGridArray] = useState([]);
 
 	useEffect(() => {}, []);
 
@@ -36,6 +37,8 @@ function App() {
 				setEngine,
 				size,
 				setSize,
+				gridArray,
+                setGridArray
 			}}
 		>
 			<div className="App">

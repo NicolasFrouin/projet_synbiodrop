@@ -244,7 +244,7 @@ function findPath(world, pathStart, pathEnd)
 						AStar[myPath.value] = true;
 					}
 				}
-				// remember this route as having no more untested options
+				// remember this route as hafindPathving no more untested options
 				Closed.push(myNode);
 			}
 		} // keep iterating until the Open list is empty
@@ -257,30 +257,30 @@ function findPath(world, pathStart, pathEnd)
 	return calculatePath();
 
 } // end of findPath() function
-var gridWidth = 13;
-var gridHeight = 13;
-var Grid =[[]];
-for (var x=0; x < gridWidth; x++)
-	{
-		world[x] = [];
+// var gridWidth = 13;
+// var gridHeight = 13;
+// var Grid =[[]];
+// for (var x=0; x < gridWidth; x++)
+// 	{
+// 		world[x] = [];
 
-		for (var y=0; y < gridHeight; y++)
-		{
-			grid[x][y] = 0;
-		}
-	}
+// 		for (var y=0; y < gridHeight; y++)
+// 		{
+// 			grid[x][y] = 0;
+// 		}
+// 	}
 
-	// scatter some walls
-	for (var x=0; x < gridWidth; x++)
-	{
-		for (var y=0; y < gridHeight; y++)
-		{
-			if (Math.random() > 0.75)
-			grid[x][y] = 1;
-		}
-	}
-var pathStart = [0,0];
-var pathEnd =[4,4];
-var path = findPath(Grid,pathStart,pathEnd)
+// 	// scatter some walls
+// 	for (var x=0; x < gridWidth; x++)
+// 	{
+// 		for (var y=0; y < gridHeight; y++)
+// 		{
+// 			if (Math.random() > 0.75)
+// 			grid[x][y] = 1;
+// 		}
+// 	}
+// var pathStart = [0,0];
+// var pathEnd =[4,4];
+// var path = findPath(Grid,pathStart,pathEnd)
 
 export default findPath;

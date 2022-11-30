@@ -21,6 +21,7 @@ export class Droplet {
 	}
 
 	move(coords) {
+
 		if (!this.canMove(coords)) return false;
 		const oldCoords = { x: this.x, y: this.y };
 		const oldDataCell = $(`#td_${oldCoords.x + "_" + oldCoords.y}`);

@@ -8,7 +8,6 @@ import { AppContext } from "../App";
 import { ContextDropletMenu } from "./ContextDropletMenu";
 
 const Grid = ({ style = {} }) => {
-	const [gridArray, setGridArray] = useState([]);
 
 	useEffect(() => {
 		const subArray = Array.from({ length: size }, () => 0);
@@ -16,7 +15,7 @@ const Grid = ({ style = {} }) => {
 		setGridArray(gridArraytmp);
 	}, []);
 
-	const { droplets, setDroplets, size } = useContext(AppContext);
+	const { droplets, setDroplets, size, setGridArray } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
