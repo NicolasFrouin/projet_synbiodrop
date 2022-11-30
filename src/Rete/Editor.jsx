@@ -158,4 +158,5 @@ export default async function (container) {
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
 	editor.trigger("process");
+	return { edit: editor, engi: engine };
 }
