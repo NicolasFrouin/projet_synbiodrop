@@ -24,10 +24,10 @@ export default async function (container) {
 		engine.register(c);
 	});
 
-	editor.on("process nodecreated noderemoved connectioncreated connectionremoved", async () => {
-		console.log("process");
+	editor.on("process", async () => {
 		await engine.abort();
 		await engine.process(editor.toJSON());
+		console.log("process", editor.toJSON());
 	});
 
 	editor.fromJSON({
@@ -58,5 +58,5 @@ export default async function (container) {
 
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
-	editor.trigger("process");
+	return { edit: editor, engi: engine };
 }

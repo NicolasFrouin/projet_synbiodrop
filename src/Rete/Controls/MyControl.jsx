@@ -19,7 +19,7 @@ class MyReactControl extends React.Component {
 	}
 
 	render() {
-		return <input value={this.state.name} onChange={this.onChange.bind(this)} />;
+		return <input value={this.state.name} type="number" onChange={this.onChange.bind(this)} />;
 	}
 }
 
@@ -32,7 +32,10 @@ export class MyControl extends Control {
 			emitter,
 			id: key,
 			name,
-			putData: () => this.putData.apply(this, arguments),
+			putData: () => {
+				console.log({ this: this, arguments });
+				return this.putData.apply(this, arguments);
+			},
 		};
 	}
 }

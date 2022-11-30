@@ -26,7 +26,7 @@ function App() {
 				utils={utils} setUtils={setUtils}
 				></Grid>
 			</div>
-		</div>
+		</AppContext.Provider>
 	);
 }
 
