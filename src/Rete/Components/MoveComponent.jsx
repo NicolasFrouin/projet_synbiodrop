@@ -20,16 +20,12 @@ export class MoveComponent extends Rete.Component {
 		const drop = inputs.dropletIn[0];
 		const pathStart = [drop.x - 1, drop.y - 1];
 		const pathEnd = [node.data.posX - 1, node.data.posY - 1];
-		console.log();
 		const path = findPath(this.context.gridArray, pathStart, pathEnd);
-		// console.log({ node, inputs, outputs, context: this.context.droplets });
-		console.log(path);
-		console.log(this.context);
 		let time = 200;
-		path.forEach(element => {
+		path.forEach((element) => {
 			setTimeout(() => {
-				drop.move({ x: element[0] + 1, y: element[1] + 1 });
-			}, time)
+				drop.move({ x: element[0] + 1, y: element[1] + 1 }, this.context.gridArray);
+			}, time);
 			time += 200;
 		});
 	}

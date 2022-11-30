@@ -5,11 +5,14 @@ import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
 import { AddComponent, MoveComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
+import HistoryPlugin from "rete-history-plugin";
 
 export default async function (container, context) {
 	var components = [new AddComponent(), new SelectorComponent(context), new MoveComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
+
+	editor.use(HistoryPlugin, { keyboard: true });
 	editor.use(ConnectionPlugin);
 	editor.use(ReactRenderPlugin, {
 		component: MyNode,

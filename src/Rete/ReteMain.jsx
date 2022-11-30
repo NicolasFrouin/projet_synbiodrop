@@ -11,9 +11,22 @@ const ReteMain = ({ style = {} }) => {
 		if (engine == null) setEngine(engi);
 	};
 
+	const undo = () => {
+		console.log("undo");
+		editor.trigger("undo");
+	};
+	const redo = () => {
+		console.log("redo");
+		editor.trigger("redo");
+	};
+
 	return (
 		<div className="vs-container" style={style}>
 			<h1 className="vs-title">Visual scripting</h1>
+			<div>
+				<button onClick={undo}>Retour</button>
+				<button onClick={redo}>Revenir</button>
+			</div>
 			<div style={{ height: "100%" }}>
 				<div ref={(el) => reteInit(el)} />
 			</div>

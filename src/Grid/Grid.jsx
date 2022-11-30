@@ -8,6 +8,7 @@ import { AppContext } from "../App";
 import { ContextDropletMenu } from "./ContextDropletMenu";
 
 const Grid = ({ style = {} }) => {
+	const { droplets, setDroplets, size, setGridArray } = useContext(AppContext);
 
 	useEffect(() => {
 		const subArray = Array.from({ length: size }, () => 0);
@@ -15,7 +16,6 @@ const Grid = ({ style = {} }) => {
 		setGridArray(gridArraytmp);
 	}, []);
 
-	const { droplets, setDroplets, size, setGridArray } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
@@ -36,19 +36,40 @@ const Grid = ({ style = {} }) => {
 				.split("_")
 				.map((v) => parseInt(v));
 			let coords = { x: coordsPre[0], y: coordsPre[1] };
+			let actualCoords = { x: coordsPre[0] - 1, y: coordsPre[1] - 1 };
 			const droplet = new Droplet(coords, option.color);
 			setDroplets((state) => {
 				state.push(droplet);
 				return state;
 			});
 			setGridArray((state) => {
-				state[size - coords.y][coords.x - 1] = 1;
-				console.log(size - coords.x, size - coords.y, state);
+				state[actualCoords.x][actualCoords.y] = 2;
+				state = fillNeighbour(state, actualCoords);
 				return state;
 			});
 			dataCell.append(droplet.draw());
 		}
 	};
+
+	const fillNeighbour = (grid, coords) => {
+		const neighbourCoords = [
+			{ x: coords.x + 1, y: coords.y + 1 },
+			{ x: coords.x, y: coords.y + 1 },
+			{ x: coords.x - 1, y: coords.y + 1 },
+			{ x: coords.x + 1, y: coords.y },
+			{ x: coords.x - 1, y: coords.y },
+			{ x: coords.x + 1, y: coords.y - 1 },
+			{ x: coords.x, y: coords.y - 1 },
+			{ x: coords.x - 1, y: coords.y - 1 },
+		];
+		console.log(grid);
+		neighbourCoords.forEach(({ x, y }) => {
+			if (grid[x] && grid[x][y]) grid[x][y] = 1;
+		});
+		console.log(neighbourCoords);
+		return grid;
+	};
+
 	return (
 		<div className="grid-container" style={style}>
 			<table id="droplet-grid">

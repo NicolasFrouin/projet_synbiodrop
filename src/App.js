@@ -19,8 +19,9 @@ function App() {
 	const process = () => {
 		editor.trigger("process");
 	};
-
+	
 	const stop = () => {
+		editor.trigger("undo");
 		engine.abort();
 	};
 
