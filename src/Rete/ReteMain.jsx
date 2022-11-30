@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import init from "./Editor";
 
 const ReteMain = () => {
+	const { editor } = useContext(AppContext)
+	const undo = () => {
+		editor.trigger("undo")
+	}
 	return (
 		<div
 			className="vs-container"
@@ -16,7 +20,8 @@ const ReteMain = () => {
 			}}
 		>
 			<h1 className="vs-title">Visual scripting</h1>
-			<button type="button" onclick="alert('Hi user!')">Press me!</button>
+			<button type="button" onclick={undo}>Undo</button>
+			<button type="button" onclick="alert('Hi user!')">Redo</button>
 			<div style={{ height: "100%" }}>
 				<div ref={(el) => init(el)} />
 			</div>
