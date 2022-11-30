@@ -1,4 +1,5 @@
 import React from "react";
+import Rete from "rete";
 import { Droplet } from "../class";
 import $ from "jquery";
 import "./Grid.css";
@@ -6,7 +7,7 @@ import { GridDropletMenu } from "./GridDropletMenu";
 
 const Grid = ({ size, droplets, setDroplets }) => {
 	const cellClick = (cellObj, option) => {
-		// const e = new NodeEditor("demo@0.1.0");
+		// const e = new Rete.NodeEditor("demo@0.1.0", <div></div>);
 		// e.trigger("process");
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
