@@ -16,6 +16,7 @@ const ReteMain = () => {
 			}}
 		>
 			<h1 className="vs-title">Visual scripting</h1>
+			<button type="button" onclick="alert('Hi user!')">Press me!</button>
 			<div style={{ height: "100%" }}>
 				<div ref={(el) => init(el)} />
 			</div>
