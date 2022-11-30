@@ -32,7 +32,10 @@ export class MyControl extends Control {
 			emitter,
 			id: key,
 			name,
-			putData: () => this.putData.apply(this, arguments),
+			putData: () => {
+				console.log({ this: this, arguments });
+				return this.putData.apply(this, arguments);
+			},
 		};
 	}
 }

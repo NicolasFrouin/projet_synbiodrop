@@ -1,14 +1,23 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import Rete from "rete";
 import { Droplet } from "../class";
 import $ from "jquery";
 import "./Grid.css";
 import { GridDropletMenu } from "./GridDropletMenu";
+import { AppContext } from "../App";
+import { ContextDropletMenu } from "./ContextDropletMenu";
 
-const Grid = ({ size, droplets, setDroplets }) => {
+const Grid = ({ style = {} }) => {
+	const [gridArray, setGridArray] = useState([]);
+
+	useEffect(() => {
+		const subArray = Array.from({ length: size }, () => 0);
+		const gridArraytmp = Array.from({ length: size }, (_, n) => n + 1).map(() => [...subArray]);
+		setGridArray(gridArraytmp);
+	}, []);
+
+	const { droplets, setDroplets, size } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
-		// const e = new Rete.NodeEditor("demo@0.1.0", <div></div>);
-		// e.trigger("process");
 		const dataCell = $(cellObj.target);
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
 			let coordsPre = dataCell[0].id
@@ -33,35 +42,43 @@ const Grid = ({ size, droplets, setDroplets }) => {
 				state.push(droplet);
 				return state;
 			});
+			setGridArray((state) => {
+				state[size - coords.y][coords.x - 1] = 1;
+				console.log(size - coords.x, size - coords.y, state);
+				return state;
+			});
 			dataCell.append(droplet.draw());
 		}
 	};
 	return (
-		<div className="grid-container">
+		<div className="grid-container" style={style}>
 			<table id="droplet-grid">
 				<tbody>
-					{Array.from({ length: size }, (_, n) => size - n).map((trv) => (
-						<tr id={`tr_${trv}`} key={`tr_${trv}`}>
-							{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => (
-								<td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}></td>
-							))}
-						</tr>
-					))}
+					{Array.from({ length: size }, (_, n) => size - n).map((trv, tri) => {
+						return (
+							<tr id={`tr_${trv}`} key={`tr_${trv}`}>
+								{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => {
+									return <td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}></td>;
+								})}
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 			<GridDropletMenu
 				targetId={"droplet-grid"}
 				options={[
-					{ name: "blue", color: "blue" },
-					{ name: "yellow", color: "yellow" },
-					{ name: "red", color: "red" },
-					{ name: "green", color: "green" },
-					{ name: "purple", color: "purple" },
-					{ name: "brown", color: "brown" },
-					{ name: "black", color: "black" },
+					{ name: "Bleu", color: "blue" },
+					{ name: "Jaune", color: "yellow" },
+					{ name: "Rouge", color: "red" },
+					{ name: "Vert", color: "green" },
+					{ name: "Violet", color: "purple" },
+					{ name: "Marron", color: "brown" },
+					{ name: "Noir", color: "black" },
 				]}
 				itemClick={cellClick}
 			/>
+			<ContextDropletMenu targetId={"droplet-grid"} />
 		</div>
 	);
 };

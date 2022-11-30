@@ -1,48 +1,49 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Control } from "rete";
 
 class SelectorComponent extends React.Component {
 	state = {};
 	componentDidMount() {
 		this.setState({
-			name: this.props.name,
-			context: this.props.context,
+			id: this.props.id,
+			value: 0,
 		});
-		console.log({ props: this.props });
-		this.props.putData(this.props.id, this.props.name);
+		this.props.putData(this.props.id, this.props.context.droplets[0]);
+		// this.props.context.setEditor(this.props.emitter);
 	}
 	onChange(event) {
-		this.props.putData(this.props.id, event.target.value);
-		this.props.emitter.trigger("process");
+		this.props.putData(this.props.id, this.props.context.droplets[event.target?.value ?? 0]);
+		this.props.context.setEditor(this.props.emitter);
 		this.setState({
-			name: event.target.value,
+			value: event.target.value,
+			droplet: this.props.context.droplets[event.target?.value ?? 0],
 		});
-		console.log(this.state.context);
 	}
 	render() {
-		return (<>
-		{/* <input value={this.state.name} type="text" list="data" onChange={this.onChange.bind(this)} /> */}
-					<select id="data"value={this.state.name} onChange={this.onChange.bind(this)}>
- 						{this.props.context.droplets.map((item, key) =>
-      						<option key={key} value={item.color}>{item.color}</option>
-    					)}
-					</select>
-		</>
-					)
+		return (
+			<select value={this.state.value} onChange={this.onChange.bind(this)}>
+				{this.props.context.droplets.map((v, i) => {
+					return (
+						<option value={i} key={i}>
+							{v.color}
+						</option>
+					);
+				})}
+			</select>
+		);
 	}
 }
 
 export class SelectorControl extends Control {
-	constructor(emitter, id, name, context) {
+	constructor(emitter, id, context) {
 		super(id);
 		this.render = "react";
 		this.component = SelectorComponent;
 		this.props = {
 			emitter,
 			id,
-			name,
 			context,
-			putData: () => this.putData.apply(this, arguments),
+			putData: (key, value) => this.putData(key, value),
 		};
 	}
 }

@@ -9,14 +9,14 @@ export class SelectorComponent extends Rete.Component {
 	}
 
 	builder(node) {
-		var out = new Rete.Output("droplet", "Goutte", dropletSocket);
-		var ctrl = new SelectorControl(this.editor, "greeting", "", this.context);
+		var out = new Rete.Output("dropletOut", "Goutte", dropletSocket);
+		var ctrl = new SelectorControl(this.editor, "droplet", this.context);
+
 		return node.addOutput(out).addControl(ctrl);
 	}
 
 	worker(node, inputs, outputs) {
-		console.log("Test de val nodes ",node.data);
-		outputs[0]=node.data.greeting;
-		console.log({ greeting: node.data.greeting, node, inputs, outputs, context: this.context.droplets });
+		outputs["dropletOut"] = node.data?.droplet;
+		// console.log({ node, inputs, outputs, context: this.context.droplets });
 	}
 }
