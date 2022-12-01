@@ -59,6 +59,7 @@ function App() {
 							margin: "1rem",
 							display: "flex",
 							flexDirection: "column",
+							position: "relative",
 						}}
 					></ReteMain>
 					<div
@@ -81,7 +82,7 @@ function App() {
 									width: "75%",
 								}}
 							>
-								<button
+								<button className="start"
 									onClick={process}
 									style={{
 										backgroundColor: "green",
@@ -91,7 +92,7 @@ function App() {
 								>
 									Exécuter
 								</button>
-								<button
+								<button className="stop"
 									onClick={stop}
 									style={{
 										backgroundColor: "red",

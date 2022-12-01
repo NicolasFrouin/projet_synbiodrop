@@ -34,6 +34,7 @@ const Grid = ({ style = {} }) => {
 				}
 				return state;
 			});
+			$(`#droplet_${coords.x + "_" + coords.y}`).css({ backgroundColor: option.color});
 		} else {
 			let coordsPre = cellObj.target.id
 				.slice(3)

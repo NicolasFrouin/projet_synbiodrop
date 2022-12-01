@@ -1,4 +1,5 @@
 import Rete from "rete";
+import DockPlugin from 'rete-dock-plugin';
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
@@ -17,8 +18,12 @@ export default async function (container, context) {
 	editor.use(ReactRenderPlugin, {
 		component: MyNode,
 	});
-	editor.use(ContextMenuPlugin);
-
+	editor.use(ContextMenuPlugin);	
+	// await editor.use(DockPlugin, {
+	// 	container: document.querySelector('.dock'),
+	// 	itemClass: 'dock-item',
+	// 	plugins: [ReactRenderPlugin]
+	// });
 	var engine = new Rete.Engine("demo@0.1.0");
 
 	components.map((c) => {
