@@ -22,6 +22,7 @@ function App() {
 	};
 
 	const stop = () => {
+		console.log({ droplets });
 		engine.abort();
 	};
 
@@ -82,7 +83,8 @@ function App() {
 									width: "75%",
 								}}
 							>
-								<button className="start"
+								<button
+									className="start"
 									onClick={process}
 									style={{
 										backgroundColor: "green",
@@ -92,7 +94,8 @@ function App() {
 								>
 									Exécuter
 								</button>
-								<button className="stop"
+								<button
+									className="stop"
 									onClick={stop}
 									style={{
 										backgroundColor: "red",

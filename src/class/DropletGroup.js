@@ -1,9 +1,10 @@
 import $ from "jquery";
-import c_c from "color-mixer"
-// import c
+import c_c from "color-mixer";
+
 export class DropletGroup {
 	constructor() {
 		this.droplets = [];
+		this.color = "";
 	}
 
 	getCoords() {
@@ -24,31 +25,29 @@ export class DropletGroup {
 	}
 
 	add(droplet) {
-		if (typeof droplet !== "array") droplet = [droplet];
-		this.droplets.concat(droplet);
+		if (!Array.isArray(droplet)) droplet = [droplet];
+		this.droplets = this.droplets.concat(droplet);
 	}
 
-	getColor(){
-		const colors= []
+	getColor() {
+		const colors = [];
 		this.droplets.forEach((drop, index) => {
-			console.log({drop: drop.color});
-			colors.push(new c_c.Color({name: drop.color}));
-        });
-		const col = new c_c.Color({mix:colors});
-		console.log({col});
-		return col.hex();
+			colors.push(new c_c.Color({ name: drop.color }));
+		});
+		return new c_c.Color({ mix: colors }).hex();
 	}
 
-	recolor(){
+	recolor() {
 		const newColor = this.getColor();
-		console.log({newColor});
+		this.color = newColor;
 		this.droplets.forEach((d) => {
-            d.recolor(newColor);
-        });
+			d.group(this);
+			d.changeColor(this.color);
+		});
 	}
 
 	remove(droplet) {
 		const rm = this.droplets.findIndex((d) => d.x === droplet.x && d.y === droplet.y);
-		this.droplets.splice(rm, 1);
+		return this.droplets.splice(rm, 1)[0];
 	}
 }
