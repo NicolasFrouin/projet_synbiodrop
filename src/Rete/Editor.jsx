@@ -9,7 +9,7 @@ import { MyNode } from "./Nodes";
 import HistoryPlugin from "rete-history-plugin";
 
 export default async function (container, context) {
-	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context), new MoveGroupComponent(context), new SelectorGroupComponent(context)];
+	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context), new MoveGroupComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 
