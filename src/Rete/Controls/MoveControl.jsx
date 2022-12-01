@@ -15,10 +15,10 @@ class MoveComponent extends React.Component {
 	onChange(event, pos) {
 		let value = parseInt(event.target.value);
 		if (value > this.props.context.size) value = this.props.context.size;
-		if (pos == "x") {
+		if (pos === "x") {
 			this.setState({ posX: value });
 			this.props.putData("posX", value);
-		} else if (pos == "y") {
+		} else if (pos === "y") {
 			this.setState({ posY: value });
 			this.props.putData("posY", value);
 		}

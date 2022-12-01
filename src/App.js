@@ -12,11 +12,13 @@ function App() {
 	const [editor, setEditor] = useState(null);
 	const [engine, setEngine] = useState(null);
 	const [size, setSize] = useState(13);
+	const [gridArray, setGridArray] = useState([]);
 
 	useEffect(() => { }, []);
 
 	const process = () => {
 		editor.trigger("process");
+		console.log(editor.toJSON().nodes);
 	};
 
 	const stop = () => {
@@ -36,6 +38,8 @@ function App() {
 				setEngine,
 				size,
 				setSize,
+				gridArray,
+				setGridArray,
 			}}
 		>
 			<div className="App">
@@ -55,6 +59,7 @@ function App() {
 							margin: "1rem",
 							display: "flex",
 							flexDirection: "column",
+							position: "relative",
 						}}
 					></ReteMain>
 					<div
@@ -77,7 +82,7 @@ function App() {
 									width: "75%",
 								}}
 							>
-								<button
+								<button className="start"
 									onClick={process}
 									style={{
 										backgroundColor: "green",
@@ -87,7 +92,7 @@ function App() {
 								>
 									Exécuter
 								</button>
-								<button
+								<button className="stop"
 									onClick={stop}
 									style={{
 										backgroundColor: "red",

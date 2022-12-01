@@ -19,14 +19,13 @@ class SelectorComponent extends React.Component {
 			droplet: this.props.context.droplets[event.target?.value ?? 0],
 		});
 	}
-
 	render() {
 		return (
 			<select value={this.state.value} onChange={this.onChange.bind(this)}>
 				{this.props.context.droplets.map((v, i) => {
 					return (
 						<option value={i} key={i}>
-							{v.color}
+							{v.name}
 						</option>
 					);
 				})}

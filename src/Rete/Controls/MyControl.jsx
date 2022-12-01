@@ -19,7 +19,7 @@ class MyReactControl extends React.Component {
 	}
 
 	render() {
-		return <input value={this.state.name} onChange={this.onChange.bind(this)} />;
+		return <input value={this.state.name} type="number" onChange={this.onChange.bind(this)} />;
 	}
 }
 

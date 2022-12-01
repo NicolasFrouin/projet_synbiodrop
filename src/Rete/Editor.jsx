@@ -1,10 +1,12 @@
 import Rete from "rete";
+import DockPlugin from 'rete-dock-plugin';
 import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import { AddComponent, MoveComponent, SelectorComponent } from "./Components";
+import { FusionComponent, MoveComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
+<<<<<<< HEAD
 import { MyControl } from "./Controls";
 import HistoryPlugin from 'rete-history-plugin';
 
@@ -103,15 +105,32 @@ class ColorComponent extends Rete.Component {
 export default async function (container) {
 	console.log(container);
 	var components = [new ColorComponent(), new AddComponent()];
+=======
+import HistoryPlugin from "rete-history-plugin";
+
+export default async function (container, context) {
+	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context)];
+>>>>>>> 539d7900d5d04cae2f2467b539c03a51aaca4a2c
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
+
+	editor.use(HistoryPlugin, { keyboard: true });
 	editor.use(ConnectionPlugin);
 	editor.use(ReactRenderPlugin, {
 		component: MyNode,
 	});
+<<<<<<< HEAD
 	editor.use(ContextMenuPlugin);
 	editor.use(HistoryPlugin, { keyboard: true });
 
+=======
+	editor.use(ContextMenuPlugin);	
+	// await editor.use(DockPlugin, {
+	// 	container: document.querySelector('.dock'),
+	// 	itemClass: 'dock-item',
+	// 	plugins: [ReactRenderPlugin]
+	// });
+>>>>>>> 539d7900d5d04cae2f2467b539c03a51aaca4a2c
 	var engine = new Rete.Engine("demo@0.1.0");
 
 	components.map((c) => {
@@ -125,6 +144,7 @@ export default async function (container) {
 		await engine.process(editor.toJSON());
 	});
 
+<<<<<<< HEAD
 	// editor.fromJSON({
 	// 	id: "demo@0.1.0",
 	// 	nodes: {
@@ -151,6 +171,8 @@ export default async function (container) {
 	// 	},
 	// });
 
+=======
+>>>>>>> 539d7900d5d04cae2f2467b539c03a51aaca4a2c
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);
 	editor.trigger("process");
