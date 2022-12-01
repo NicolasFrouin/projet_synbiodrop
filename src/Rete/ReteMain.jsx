@@ -31,7 +31,7 @@ const ReteMain = ({ style = {} }) => {
 			<img src={logo} alt="Logo" style={{width:"50px",borderRadius:"18%",}} />
 			<img src={user} alt="user" style={{width:"50px",borderRadius:"50%",margin: "0 25px 0 25px",}} />
 			<div style={{display:"grid",justifyItems: "left",}}>
-			<span className="vs-title" style={{whiteSpace: "nowrap",}}>Visual scripting</span>
+			<span className="vs-title" style={{whiteSpace: "nowrap",}}>Microfluidics COV-19 #1689</span>
 			<span className="vs-subtitle" style={{color:"#7f89a5"}}>http://localhost/ashd12/</span>
 			</div>
 			</div>	
