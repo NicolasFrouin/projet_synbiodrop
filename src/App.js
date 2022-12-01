@@ -3,6 +3,7 @@ import ReteMain from "./Rete/ReteMain";
 import Grid from "./Grid/Grid";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Droplet } from "./class";
+import {MdPlayArrow,MdStop} from "react-icons/md";
 // import Heat from "./HeatOld/Heat";
 
 
@@ -52,6 +53,8 @@ function App() {
 						display: "flex",
 						// justifyContent: "space-between",
 						gap: "2rem",
+						backgroundColor: "#f3f5fa",
+						height: "100vh",
 					}}
 				>
 					<ReteMain
@@ -59,8 +62,6 @@ function App() {
 							textAlign: "center",
 							width: "60%",
 							height: "95vh",
-							border: "solid #6c0277 1px",
-							margin: "1rem",
 							display: "flex",
 							flexDirection: "column",
 							position: "relative",
@@ -71,9 +72,14 @@ function App() {
 							display: "flex",
 							flexDirection: "column",
 							alignItems: "center",
+							backgroundColor: "white",
+							width: "45%",
+							boxShadow: "rgba(0, 0, 0, 0.2) 0px 20px 30px",
 						}}
 					>
+						<div style={{display: "grid",justifyItems: "center",margin:"auto"}}>
 						{editor != null && (
+							
 							<div
 								style={{
 									// border: "solid yellow 1px",
@@ -82,11 +88,11 @@ function App() {
 									justifyContent: "center",
 									alignItems: "center",
 									marginBlock: "3rem",
-									height: "3rem",
-									width: "75%",
+									height: "2rem",
+									width: "50%",
 								}}
 							>
-								<button
+								<MdPlayArrow
 									className="start"
 									onClick={process}
 									style={{
@@ -95,10 +101,9 @@ function App() {
 										flex: 1,
 									}}
 								>
-									Exécuter
-								</button>
+								</MdPlayArrow>
 								{/* <Heat /> */}
-								<button
+								<MdStop
 									className="stop"
 									onClick={stop}
 									style={{
@@ -107,12 +112,11 @@ function App() {
 										flex: 1,
 									}}
 								>
-									Stop
-								</button>
+								</MdStop>
 							</div>
 						)}
-						<Grid style={{}} utils={utils} setUtils={setUtils}
-				></Grid>
+						<Grid style={{}} utils={utils} setUtils={setUtils}></Grid>
+					</div>
 					</div>
 				</div>
 			</div>
