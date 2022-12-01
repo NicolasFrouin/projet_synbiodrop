@@ -6,8 +6,9 @@ import "./Grid.css";
 import { GridDropletMenu } from "./GridDropletMenu";
 import { AppContext } from "../App";
 import { ContextDropletMenu } from "./ContextDropletMenu";
+// import Heat from "../HeatOld/Heat";
 
-const Grid = ({ style = {} }) => {
+const Grid = ({ style = {}, utils, setUtils }) => {
 	const { droplets, setDroplets, size, setGridArray } = useContext(AppContext);
 
 	useEffect(() => {
@@ -52,7 +53,11 @@ const Grid = ({ style = {} }) => {
 				state[actualCoords.x][actualCoords.y] = 2;
 				return state;
 			});
-			dataCell.append(droplet.draw());
+			if ((coordsPre[1] === 12 || coordsPre[1] === 13) && coordsPre[0] <= 4) {
+				alert("Impossible de placer une goutte dans la zone chauffante ")
+			}else{
+				dataCell.append(droplet.draw());
+			}
 		}
 	};
 
@@ -76,14 +81,19 @@ const Grid = ({ style = {} }) => {
 						return (
 							<tr id={`tr_${trv}`} key={`tr_${trv}`}>
 								{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => {
-									return (
+									var a = (
 										<td
 											id={`td_${tdv}_${trv}`}
 											key={`td_${tdv}_${trv}`}
+									style={{
+										backgroundColor: (trv === 12 || trv === 13) && tdv <= 4
+										? "salmon" : "white"
+									}}
 											onContextMenu={infoDroplet}
 										></td>
-									);
-								})}
+									)
+									return a
+									})}
 							</tr>
 						);
 					})}

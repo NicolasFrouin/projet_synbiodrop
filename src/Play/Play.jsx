@@ -5,7 +5,7 @@ const Moving=()=>{
 	//console.log(cell.length);
 	for (var i=0; i<cell.length; i++) {
 		//console.log(cell[i]);
-		if(x == i){
+		if(x === i){
 		cell[i].style.backgroundColor = 'red';
 		cell[i].onclick = function() {
 		console.log(x);

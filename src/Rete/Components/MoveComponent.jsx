@@ -3,6 +3,7 @@ import { Common } from "../../class";
 import findPath from "../../Grid/Astar/Astar";
 import { MoveControl } from "../Controls";
 import { dropletSocket } from "../Sockets";
+import { heatSocket } from "../Sockets";
 
 export class MoveComponent extends Rete.Component {
 	constructor(context) {
