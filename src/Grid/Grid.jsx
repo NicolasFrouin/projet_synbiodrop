@@ -41,7 +41,7 @@ const Grid = ({ style = {} }) => {
 				.map((v) => parseInt(v));
 			let coords = { x: coordsPre[0], y: coordsPre[1] };
 			let actualCoords = { x: coordsPre[0] - 1, y: coordsPre[1] - 1 };
-			const droplet = new Droplet(coords, option.color, 1, option.name);
+			const droplet = new Droplet(coords, option.color, option.name);
 			setDroplets((state) => {
 				state.push(droplet);
 				return state;

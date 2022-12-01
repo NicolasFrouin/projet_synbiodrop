@@ -18,12 +18,13 @@ export class DropletGroup {
 
 	move(coords) {}
 
-	add(droplet) {
-		this.droplets.push(droplet);
+	add(droplets) {
+		if (!Array.isArray(droplets)) droplets = [droplets];
+		this.droplets.concat(droplets);
 	}
 
 	remove(droplet) {
 		const rm = this.droplets.findIndex((d) => d.x === droplet.x && d.y === droplet.y);
-		this.droplets.splice(rm, 1);
+		return this.droplets.splice(rm, 1)[0];
 	}
 }
