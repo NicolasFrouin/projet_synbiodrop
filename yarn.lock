@@ -7824,12 +7824,15 @@ rete-context-menu-plugin@^1.0.0-alpha9:
   resolved "https://registry.yarnpkg.com/rete-context-menu-plugin/-/rete-context-menu-plugin-1.0.0-alpha9.tgz#b7323255166362f3559f82a125f3b1b06d717630"
   integrity sha512-dtW+IIlzDSe4z36ygcB77QKpczJnzS1AdC2C6Wx0QkhU5+mL7axU9Tp5AUcVH/Y7RLXskAiHX3GAO6ZGgI2iSg==
 
-rete-minimap-plugin@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/rete-minimap-plugin/-/rete-minimap-plugin-0.3.1.tgz#5c0f8b8bdde8baa819f3f35c0446e4ebf0399071"
-  integrity sha512-B89MwDxz0NBngE9bkf0F9jI++Jn/wsOZll88Xoa7snbBAdziVgmHikroSjiMAWlzwSNmHk7Mzo8DmezsAz46Jg==
-  dependencies:
-    vue "^2.5.17"
+rete-dock-plugin@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/rete-dock-plugin/-/rete-dock-plugin-0.2.1.tgz#d5537568eac539236bbe52bea3491fa85b1b3715"
+  integrity sha512-o3KGrv7HA2AcnGL/K1VfwZ+yUgmE/wejLGsvhFi6nwJnf8IdiMiEvmISZkiER6lgc/tGmh2Ptyb/cLcCMgFkVQ==
+
+rete-history-plugin@^0.2.2:
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/rete-history-plugin/-/rete-history-plugin-0.2.2.tgz#e8c9036e75be4cc2d95b6c43837ecf6ad6116208"
+  integrity sha512-FkPd5Z9WV7pGVHKEF7n+9aeY52MjJ9gQQUlQE45TGjffU2mVdUkx6P8fMtQw04089tD8N4SLJwiy8TkHqlAGWQ==
 
 rete-react-render-plugin@^0.3.0:
   version "0.3.0"

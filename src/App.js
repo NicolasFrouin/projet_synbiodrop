@@ -18,6 +18,7 @@ function App() {
 
 	const process = () => {
 		editor.trigger("process");
+		console.log(editor.toJSON().nodes);
 	};
 
 	const stop = () => {
@@ -38,7 +39,7 @@ function App() {
 				size,
 				setSize,
 				gridArray,
-                setGridArray
+				setGridArray,
 			}}
 		>
 			<div className="App">

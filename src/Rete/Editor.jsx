@@ -5,13 +5,16 @@ import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import { MergeDropletComponent, MoveComponent, SelectorComponent, DividerDropletComponent } from "./Components";
+import { FusionComponent, MoveComponent, SelectorComponent } from "./Components";
 import { MyNode } from "./Nodes";
+import HistoryPlugin from "rete-history-plugin";
 
 export default async function (container, context) {
-	var components = [new SelectorComponent(context), new MoveComponent(context), new MergeDropletComponent(context), new DividerDropletComponent(context)];
+	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
+
+	editor.use(HistoryPlugin, { keyboard: true });
 	editor.use(ConnectionPlugin);
 	editor.use(ReactRenderPlugin, {
 		component: MyNode,
@@ -33,34 +36,7 @@ export default async function (container, context) {
 	editor.on("process", async () => {
 		await engine.abort();
 		await engine.process(editor.toJSON());
-		console.log("process", editor.toJSON());
 	});
-
-	// editor.fromJSON({
-	// 	id: "demo@0.1.0",
-	// 	nodes: {
-	// 1: {
-	// 	id: 1,
-	// 	data: {},
-	// 	inputs: { num1: { connections: [] } },
-	// 	outputs: {
-	// 		num: { connections: [{ node: 2, input: "num1", data: {} }] },
-	// 	},
-	// 	position: [-285.5, -105.375],
-	// 	name: "Add",
-	// },
-	// 2: {
-	// 	id: 2,
-	// 	data: {},
-	// 	inputs: {
-	// 		num1: { connections: [{ node: 1, output: "num", data: {} }] },
-	// 	},
-	// 	outputs: { num: { connections: [] } },
-	// 	position: [-16.5, -99.375],
-	// 	name: "Add",
-	// },
-	// 	},
-	// });
 
 	editor.view.resize();
 	AreaPlugin.zoomAt(editor);

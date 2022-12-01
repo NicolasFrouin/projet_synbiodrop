@@ -20,14 +20,15 @@ export class Droplet {
 		};border-radius:50%;animation: moving .2s ease-in-out alternate;'></div>`;
 	}
 
-	move(coords) {
-
+	move(coords, gridArray) {
 		if (!this.canMove(coords)) return false;
 		const oldCoords = { x: this.x, y: this.y };
 		const oldDataCell = $(`#td_${oldCoords.x + "_" + oldCoords.y}`);
 		const newDataCell = $(`#td_${coords.x + "_" + coords.y}`);
 		this.x = coords.x;
 		this.y = coords.y;
+		gridArray[oldCoords.x - 1][oldCoords.y - 1] = 0;
+		gridArray[this.x - 1][this.y - 1] = 2;
 		oldDataCell.empty();
 		newDataCell.append(this.draw());
 	}
