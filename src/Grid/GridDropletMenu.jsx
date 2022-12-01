@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef, useLayoutEffect } from "react";
 import "./GridDropletMenu.css";
 import React from "react";
+import $ from "jquery";
 
 export const GridDropletMenu = ({ targetId, options, itemClick }) => {
 	const [contextData, setContextData] = useState({ visible: false, posX: 0, posY: 0, event: null });
@@ -9,6 +10,10 @@ export const GridDropletMenu = ({ targetId, options, itemClick }) => {
 	useEffect(() => {
 		const contextMenuEventHandler = (event) => {
 			const targetElement = document.getElementById(targetId);
+			if (event.target.tagName === "DIV" && $(event.target).hasClass("droplet")) {
+				itemClick(event, null);
+				return;
+			}
 			if (targetElement && targetElement.contains(event.target)) {
 				event.preventDefault();
 				setContextData({ visible: true, posX: event.clientX, posY: event.clientY, event });

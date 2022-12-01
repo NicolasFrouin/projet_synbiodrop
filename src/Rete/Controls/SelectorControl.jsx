@@ -25,7 +25,7 @@ class SelectorComponent extends React.Component {
 				{this.props.context.droplets.map((v, i) => {
 					return (
 						<option value={i} key={i}>
-							{v.color}
+							{v.name}
 						</option>
 					);
 				})}

@@ -15,6 +15,7 @@ export class MoveComponent extends Rete.Component {
 		var input = new Rete.Input(this.id + "_dropletMoveIn", "Goutte", dropletSocket);
 		var ctrl = new MoveControl(this.editor, this.id + "_position", this.context);
 		var out = new Rete.Output(this.id + "_dropletMoveOut", "Goutte", dropletSocket);
+		this.context.setEditor(this.editor);
 		return node.addInput(input).addControl(ctrl).addOutput(out);
 	}
 
