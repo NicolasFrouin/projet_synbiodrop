@@ -3,9 +3,10 @@ import ReteMain from "./Rete/ReteMain";
 import Grid from "./Grid/Grid";
 import { createContext, useContext, useEffect, useState } from "react";
 import { Droplet } from "./class";
+// import Heat from "./HeatOld/Heat";
+
 
 export const AppContext = createContext();
-
 function App() {
 	const [dropletsGroups, setDropletsGroups] = useState([]);
 	const [droplets, setDroplets] = useState([]);
@@ -13,7 +14,9 @@ function App() {
 	const [engine, setEngine] = useState(null);
 	const [size, setSize] = useState(13);
 	const [gridArray, setGridArray] = useState([]);
+	const [utils, setUtils] = useState([]);
 
+	console.log(useState([]));
 	useEffect(() => {}, []);
 
 	const process = () => {
@@ -94,6 +97,7 @@ function App() {
 								>
 									Exécuter
 								</button>
+								{/* <Heat /> */}
 								<button
 									className="stop"
 									onClick={stop}
@@ -107,7 +111,8 @@ function App() {
 								</button>
 							</div>
 						)}
-						<Grid style={{}}></Grid>
+						<Grid style={{}} utils={utils} setUtils={setUtils}
+				></Grid>
 					</div>
 				</div>
 			</div>

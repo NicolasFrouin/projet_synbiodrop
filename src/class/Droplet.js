@@ -7,6 +7,7 @@ export class Droplet {
 		this.y = coords.y;
 		this.color = color;
 		this.temperature = null;
+		this.temps = null;
 		this.dropletGroup = null;
 	}
 
