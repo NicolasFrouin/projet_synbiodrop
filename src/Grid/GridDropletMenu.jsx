@@ -10,7 +10,7 @@ export const GridDropletMenu = ({ targetId, options, itemClick }) => {
 	useEffect(() => {
 		const contextMenuEventHandler = (event) => {
 			const targetElement = document.getElementById(targetId);
-			if (event.target.tagName === "DIV" && $(event.target).hasClass("droplet")) {
+			if (event.target.tagName === "DIV" && $(event.target).hasClass("droplet-cell")) {
 				itemClick(event, null);
 				return;
 			}

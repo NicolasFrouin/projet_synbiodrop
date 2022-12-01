@@ -13,11 +13,11 @@ class SelectorComponent extends React.Component {
 	}
 	onChange(event) {
 		this.props.putData(this.props.id, this.props.context.droplets[event.target?.value ?? 0]);
-		this.props.context.setEditor(this.props.emitter);
 		this.setState({
 			value: event.target.value,
 			droplet: this.props.context.droplets[event.target?.value ?? 0],
 		});
+		this.props.context.setEditor(this.props.emitter);
 	}
 	render() {
 		return (

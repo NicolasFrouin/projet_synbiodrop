@@ -1,5 +1,5 @@
 function findPath(world, pathStart, pathEnd, avoidDroplets = true) {
-	// console.log(arguments);
+	console.log(arguments);
 
 	// shortcuts for speed
 	var abs = Math.abs;

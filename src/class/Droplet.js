@@ -1,5 +1,5 @@
 import $ from "jquery";
-import "./Droplet.css"
+import "./Droplet.css";
 export class Droplet {
 	constructor(coords = { x: 0, y: 0 }, color = "#000000", name = "") {
 		this.name = name;
@@ -15,7 +15,7 @@ export class Droplet {
 	}
 
 	draw() {
-		return `<div class='droplet' id='droplet_${this.x + "_" + this.y}' style='height:100%;width:100%;${
+		return `<div class='droplet-cell' id='droplet_${this.x + "_" + this.y}' style='height:100%;width:100%;${
 			this.color ? "background-color:" + this.color : ""
 		};border-radius:50%;animation: moving .2s ease-in-out alternate;'></div>`;
 	}
@@ -39,6 +39,6 @@ export class Droplet {
 
 	changeColor(newColor) {
 		this.color = newColor;
-		$(`#td_${this.x + "_" + this.y}`).css("backgorund-color", newColor);
+		$(`#droplet_${this.x + "_" + this.y}`)[0].style.backgroundColor = this.color;
 	}
 }
