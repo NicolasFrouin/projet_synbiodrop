@@ -4,12 +4,12 @@ import ReactRenderPlugin from "rete-react-render-plugin";
 import ConnectionPlugin from "rete-connection-plugin";
 import ContextMenuPlugin from "rete-context-menu-plugin";
 import AreaPlugin from "rete-area-plugin";
-import { FusionComponent, MoveComponent, SelectorComponent } from "./Components";
+import { FusionComponent, MoveComponent, MoveGroupComponent, SelectorComponent, SelectorGroupComponent } from "./Components";
 import { MyNode } from "./Nodes";
 import HistoryPlugin from "rete-history-plugin";
 
 export default async function (container, context) {
-	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context)];
+	var components = [new SelectorComponent(context), new MoveComponent(context), new FusionComponent(context), new MoveGroupComponent(context), new SelectorGroupComponent(context)];
 
 	var editor = new Rete.NodeEditor("demo@0.1.0", container);
 

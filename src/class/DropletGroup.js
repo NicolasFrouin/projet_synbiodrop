@@ -17,8 +17,10 @@ export class DropletGroup {
 		return this.droplets.map((d) => [d.x, d.y]);
 	}
 
-	move(coords) {
-		
+	move(coords, gridArray) {
+		this.droplets = this.droplets.map((d) => {
+					d.move(coords,gridArray);
+				});	
 	}
 
 	add(droplet) {
