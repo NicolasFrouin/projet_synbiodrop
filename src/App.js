@@ -13,7 +13,7 @@ function App() {
 	const [engine, setEngine] = useState(null);
 	const [size, setSize] = useState(13);
 
-	useEffect(() => {}, []);
+	useEffect(() => { }, []);
 
 	const process = () => {
 		editor.trigger("process");
