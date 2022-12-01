@@ -1,5 +1,6 @@
 import $ from "jquery";
-
+import c_c from "color-mixer"
+// import c
 export class DropletGroup {
 	constructor() {
 		this.droplets = [];
@@ -21,7 +22,27 @@ export class DropletGroup {
 	}
 
 	add(droplet) {
-		this.droplets.push(droplet);
+		if (typeof droplet !== "array") droplet = [droplet];
+		this.droplets.concat(droplet);
+	}
+
+	getColor(){
+		const colors= []
+		this.droplets.forEach((drop, index) => {
+			console.log({drop: drop.color});
+			colors.push(new c_c.Color({name: drop.color}));
+        });
+		const col = new c_c.Color({mix:colors});
+		console.log({col});
+		return col.hex();
+	}
+
+	recolor(){
+		const newColor = this.getColor();
+		console.log({newColor});
+		this.droplets.forEach((d) => {
+            d.recolor(newColor);
+        });
 	}
 
 	remove(droplet) {

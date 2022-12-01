@@ -1,5 +1,5 @@
-function findPath(world, pathStart, pathEnd) {
-	console.log(arguments);
+function findPath(world, pathStart, pathEnd, avoidDroplets = true) {
+	// console.log(arguments);
 
 	// shortcuts for speed
 	var abs = Math.abs;
@@ -224,8 +224,8 @@ function findPath(world, pathStart, pathEnd) {
 			} // not the destination
 			else {
 				// find which nearby nodes are walkable
-				let myNeighboursTmp = Neighbours(myNode.x, myNode.y);
-				myNeighbours = findNeighbours(myNeighboursTmp);
+				myNeighbours = Neighbours(myNode.x, myNode.y);
+				if (avoidDroplets) myNeighbours = findNeighbours(myNeighbours);
 				// test each one that hasn't been tried already
 				for (i = 0, j = myNeighbours.length; i < j; i++) {
 					myPath = Node(myNode, myNeighbours[i]);

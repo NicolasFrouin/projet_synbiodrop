@@ -82,7 +82,7 @@ function App() {
 									width: "75%",
 								}}
 							>
-								<button
+								<button className="start"
 									onClick={process}
 									style={{
 										backgroundColor: "green",
@@ -92,7 +92,7 @@ function App() {
 								>
 									Exécuter
 								</button>
-								<button
+								<button className="stop"
 									onClick={stop}
 									style={{
 										backgroundColor: "red",
