@@ -2,9 +2,8 @@ import "./App.css";
 import ReteMain from "./Rete/ReteMain";
 import Grid from "./Grid/Grid";
 import { createContext, useContext, useEffect, useState } from "react";
-import { Droplet } from "./class";
+import { Droplet, DropletGroup } from "./class";
 // import Heat from "./HeatOld/Heat";
-
 
 export const AppContext = createContext();
 function App() {
@@ -16,17 +15,14 @@ function App() {
 	const [gridArray, setGridArray] = useState([]);
 	const [utils, setUtils] = useState([]);
 
-	console.log(useState([]));
 	useEffect(() => {}, []);
 
 	const process = () => {
-		editor.trigger("process");
-		console.log(editor.toJSON().nodes);
+		editor.trigger("process", { action: "process" });
 	};
 
 	const stop = () => {
-		console.log({ droplets });
-		engine.abort();
+		editor.trigger("process", { action: "abort" });
 	};
 
 	return (
@@ -76,7 +72,6 @@ function App() {
 						{editor != null && (
 							<div
 								style={{
-									// border: "solid yellow 1px",
 									display: "flex",
 									gap: "5rem",
 									justifyContent: "center",
@@ -97,7 +92,6 @@ function App() {
 								>
 									Exécuter
 								</button>
-								{/* <Heat /> */}
 								<button
 									className="stop"
 									onClick={stop}
@@ -105,14 +99,14 @@ function App() {
 										backgroundColor: "red",
 										height: "100%",
 										flex: 1,
+										display: "none", // fonctionne pas :(
 									}}
 								>
 									Stop
 								</button>
 							</div>
 						)}
-						<Grid style={{}} utils={utils} setUtils={setUtils}
-				></Grid>
+						<Grid style={{}} utils={utils} setUtils={setUtils}></Grid>
 					</div>
 				</div>
 			</div>

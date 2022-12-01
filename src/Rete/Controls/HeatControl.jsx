@@ -10,7 +10,6 @@ class HeatComponent extends React.Component {
 		});
 		this.props.putData("temperature", 0);
 		this.props.putData("temps", 0);
-		this.props.context.setEditor(this.props.emitter);
 	}
 	onChange(event, pos) {
 		let value = parseInt(event.target.value);

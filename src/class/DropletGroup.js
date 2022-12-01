@@ -7,6 +7,14 @@ export class DropletGroup {
 		this.color = "";
 	}
 
+	get x() {
+		return Math.min(...this.droplets.map((d) => d.x));
+	}
+
+	get y() {
+		return Math.max(...this.droplets.map((d) => d.y));
+	}
+
 	getCoords() {
 		this.droplets.sort((a, b) => {
 			if (a.x == b.x) {
@@ -18,7 +26,15 @@ export class DropletGroup {
 		return this.droplets.map((d) => [d.x, d.y]);
 	}
 
-	move(coords) {}
+	move(coords, gridArray) {
+		this.droplets.forEach((d) => {
+			let moveY = coords.y;
+			if (d.x !== this.x || d.y !== this.y) {
+				moveY -= 1;
+			}
+			d.move({ x: coords.x, y: moveY }, gridArray);
+		});
+	}
 
 	add(droplet) {
 		if (!Array.isArray(droplet)) droplet = [droplet];

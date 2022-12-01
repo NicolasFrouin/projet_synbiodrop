@@ -14,8 +14,7 @@ export class FusionComponent extends Rete.Component {
 		var input1 = new Rete.Input("dropIn1", "Goutte 1", dropletSocket);
 		var input2 = new Rete.Input("dropIn2", "Goutte 2", dropletSocket);
 		var ctrl = new FusionControl(this.editor, "position", this.context);
-		var out = new Rete.Output("GroupdropOut", "Grouppe de Goutte", groupDroplet);
-		// this.context.setEditor(this.editor);
+		var out = new Rete.Output("groupOut", "Groupe", groupDroplet);
 		return node.addInput(input1).addInput(input2).addOutput(out).addControl(ctrl);
 	}
 
@@ -35,6 +34,6 @@ export class FusionComponent extends Rete.Component {
 		}
 		groupDropletElement.add([drop1, drop2]);
 		groupDropletElement.recolor();
-		outputs["dropOut"] = groupDropletElement;
+		outputs["groupOut"] = groupDropletElement;
 	}
 }

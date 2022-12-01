@@ -1,7 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import { Control } from "rete";
 
-class MoveComponent extends React.Component {
+class GroupMoveComponent extends React.Component {
 	state = {};
 	componentDidMount() {
 		this.setState({
@@ -54,11 +54,11 @@ class MoveComponent extends React.Component {
 	}
 }
 
-export class MoveControl extends Control {
+export class GroupMoveControl extends Control {
 	constructor(emitter, id, context) {
 		super(id);
 		this.render = "react";
-		this.component = MoveComponent;
+		this.component = GroupMoveComponent;
 		this.props = {
 			emitter,
 			id,

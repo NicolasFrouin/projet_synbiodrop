@@ -9,7 +9,6 @@ class SelectorComponent extends React.Component {
 			value: 0,
 		});
 		this.props.putData(this.props.id, this.props.context.droplets[0]);
-		// this.props.context.setEditor(this.props.emitter);
 	}
 	onChange(event) {
 		this.props.putData(this.props.id, this.props.context.droplets[event.target?.value ?? 0]);
