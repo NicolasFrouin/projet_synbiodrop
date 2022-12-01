@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
+import Rete from "rete";
 import { Droplet } from "../class";
 import $ from "jquery";
 import "./Grid.css";
 import { GridDropletMenu } from "./GridDropletMenu";
-import HeatMap from "@uiw/react-heat-map";
+import { AppContext } from "../App";
+import { ContextDropletMenu } from "./ContextDropletMenu";
+// import Heat from "../HeatOld/Heat";
 
-const Grid = ({ size, droplets, setDroplets, utils, setUtils }) => {
+const Grid = ({ style = {}, utils, setUtils }) => {
+
+	useEffect(() => {
+		const subArray = Array.from({ length: size }, () => 0);
+		const gridArraytmp = Array.from({ length: size }, (_, n) => n + 1).map(() => [...subArray]);
+		setGridArray(gridArraytmp);
+	}, []);
+
+	const { droplets, setDroplets, size, setGridArray } = useContext(AppContext);
 	const cellClick = (cellObj, option) => {
-		// const e = new NodeEditor("demo@0.1.0");
-		// e.trigger("process");
 		const dataCell = $(cellObj.target);
-
 		if (dataCell[0].tagName == "DIV" || dataCell.children().length) {
 			let coordsPre = dataCell[0].id
 				.slice(dataCell[0].tagName == "TD" ? 3 : 8)
@@ -34,75 +42,56 @@ const Grid = ({ size, droplets, setDroplets, utils, setUtils }) => {
 				state.push(droplet);
 				return state;
 			});
+			setGridArray((state) => {
+				state[size - coords.y][coords.x - 1] = 1;
+				console.log(size - coords.x, size - coords.y, state);
+				return state;
+			});
 			if ((coordsPre[1] === 12 || coordsPre[1] === 13) && coordsPre[0] <= 4) {
-				alert('votre goutte est dans la plaque chauffante ')
-				const temp = 12;
-				const temperature  = new Droplet(temp, option.temperature);
-				setDroplets((state) => {
-					state.push(droplet);
-					return state;
-				});
-				dataCell.append(droplet.draw());
+				alert("Impossible de placer une goutte dans la zone chauffante ")
 			}else{
 				dataCell.append(droplet.draw());
 			}
-
 		}
 	};
-
 	return (
-		<div className="grid-container">
+		<div className="grid-container" style={style}>
 			<table id="droplet-grid">
 				<tbody>
-					{Array.from({ length: size }, (_, n) => size - n).map((trv) => (
-						<tr id={`tr_${trv}`} key={`tr_${trv}`}>
-							{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => {
-								
-								var a = <td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}
-								style={{
-									backgroundColor: (trv == 12 || trv == 13) && tdv <= 4
-									? "salmon" : "white"
-								}}></td>
-								setUtils(state => {
-									state.push({funtion: "heat", coords: [tdv, trv]})
-									return state;
-								})
-								
-								// if(trv == size && tdv >= 1 && tdv <= 4 && count1 == 0){
-								// 	console.log(a.key);
-								// }
-								// if (trv == 13 && tdv >= 1 && tdv <= 4 && count1 == 0 ) {
-								// 	console.log(a.key);
-								//  document.getElementById(a.key).style.backgroundColor ="red";
-								// 	count1++;
-
-								// }else if (trv == size - 1 && tdv >= 1 && tdv <= 4 && count2 == 0 ) {
-								//   document.getElementById(a.key).style.backgroundColor ="red";
-								// 	count1++;
-
-								// }
-								return a
-							})}
-						</tr>
-					))}
+					{Array.from({ length: size }, (_, n) => size - n).map((trv, tri) => {
+						return (
+							<tr id={`tr_${trv}`} key={`tr_${trv}`}>
+								{Array.from({ length: size }, (_, n) => n + 1).map((tdv) => {
+									var a = <td id={`td_${tdv}_${trv}`} key={`td_${tdv}_${trv}`}
+									style={{
+										backgroundColor: (trv === 12 || trv === 13) && tdv <= 4
+										? "salmon" : "white"
+									}}></td>
+									return a
+									})}
+							</tr>
+						);
+					})}
 				</tbody>
 			</table>
 			<GridDropletMenu
 				targetId={"droplet-grid"}
 				options={[
-					{ name: "blue", color: "blue" },
-					{ name: "yellow", color: "yellow" },
-					{ name: "red", color: "red" },
-					{ name: "green", color: "green" },
-					{ name: "purple", color: "purple" },
-					{ name: "brown", color: "brown" },
-					{ name: "black", color: "black" },
+					{ name: "Bleu", color: "blue" },
+					{ name: "Jaune", color: "yellow" },
+					{ name: "Rouge", color: "red" },
+					{ name: "Vert", color: "green" },
+					{ name: "Violet", color: "purple" },
+					{ name: "Marron", color: "brown" },
+					{ name: "Noir", color: "black" },
 				]}
 				itemClick={cellClick}
 			/>
+			<ContextDropletMenu targetId={"droplet-grid"} />
+			
+
 		</div>
 	);
-
 };
 
 export default Grid;

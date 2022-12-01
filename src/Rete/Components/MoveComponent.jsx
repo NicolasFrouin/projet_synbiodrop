@@ -2,6 +2,7 @@ import Rete from "rete";
 import findPath from "../../Grid/Astar/Astar";
 import { MoveControl, SelectorControl } from "../Controls";
 import { dropletSocket } from "../Sockets";
+import { heatSocket } from "../Sockets";
 
 export class MoveComponent extends Rete.Component {
 	constructor(context) {
@@ -11,13 +12,16 @@ export class MoveComponent extends Rete.Component {
 
 	builder(node) {
 		var input = new Rete.Input("dropletIn", "Goutte", dropletSocket);
+		var temps = new Rete.Input('inputTemps', 'inputTemps', heatSocket);
+		var temperature = new Rete.Input('inputTemp', 'inputTemps', heatSocket); 
 		var ctrl = new MoveControl(this.editor, "position", this.context);
-		console.log({ node });
-		return node.addInput(input).addControl(ctrl);
+
+		return node.addInput(input).addInput(temps).addInput(temperature).addControl(ctrl);
 	}
 
 	worker(node, inputs, outputs) {
 		const drop = inputs.dropletIn[0];
+		console.log(inputs);
 		const pathStart = [drop.x - 1, drop.y - 1];
 		const pathEnd = [node.data.posX - 1, node.data.posY - 1];
 		console.log();

@@ -5,34 +5,45 @@ class SelectorComponent extends React.Component {
 	state = {};
 	componentDidMount() {
 		this.setState({
-			name: this.props.name,
+			id: this.props.id,
+			value: 0,
 		});
-		console.log({ props: this.props });
-		this.props.putData(this.props.id, this.props.name);
+		this.props.putData(this.props.id, this.props.context.droplets[0]);
+		// this.props.context.setEditor(this.props.emitter);
 	}
 	onChange(event) {
-		this.props.putData(this.props.id, event.target.value);
-		this.props.emitter.trigger("process");
+		this.props.putData(this.props.id, this.props.context.droplets[event.target?.value ?? 0]);
+		this.props.context.setEditor(this.props.emitter);
 		this.setState({
-			name: event.target.value,
+			value: event.target.value,
+			droplet: this.props.context.droplets[event.target?.value ?? 0],
 		});
 	}
-
 	render() {
-		return <input value={this.state.name} onChange={this.onChange.bind(this)} />;
+		return (
+			<select value={this.state.value} onChange={this.onChange.bind(this)}>
+				{this.props.context.droplets.map((v, i) => {
+					return (
+						<option value={i} key={i}>
+							{v.color}
+						</option>
+					);
+				})}
+			</select>
+		);
 	}
 }
 
 export class SelectorControl extends Control {
-	constructor(emitter, id, name) {
+	constructor(emitter, id, context) {
 		super(id);
 		this.render = "react";
 		this.component = SelectorComponent;
 		this.props = {
 			emitter,
 			id,
-			name,
-			putData: () => this.putData.apply(this, arguments),
+			context,
+			putData: (key, value) => this.putData(key, value),
 		};
 	}
 }
