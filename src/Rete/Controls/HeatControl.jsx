@@ -5,8 +5,8 @@ class HeatComponent extends React.Component {
 	state = {};
 	componentDidMount() {
 		this.setState({
-			posX: 1,
-			posY: 13,
+			temperature: 0,
+			temps: 0,
 		});
 		this.props.putData("temperature", 0);
 		this.props.putData("temps", 0);
@@ -26,27 +26,27 @@ class HeatComponent extends React.Component {
 
 	render() {
 		return (
-			<div style={{ display: "block", flexDirection: "column" }}>
-				<label htmlFor="inputTemp">
-					<span>Degrés</span>
+			<div style={{ display: "flex", flexDirection: "column" }}>
+				<label htmlFor="inputTemp" style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+					<span>Température (°C)</span>
 					<input
 						onChange={(e) => this.onChange(e, "temperature")}
 						value={this.state.temperature}
 						type={"number"}
 						min={0}
-						max={this.props.context.size}
 						id={"inputTemp"}
+						style={{ width: "5rem" }}
 					/>
 				</label>
-				<label htmlFor="inputTemps">
-					<span>Temps</span>
+				<label htmlFor="inputTemps" style={{ display: "flex", justifyContent: "space-between", gap: "1rem" }}>
+					<span>Temps (sec)</span>
 					<input
 						onChange={(e) => this.onChange(e, "temps")}
 						value={this.state.temps}
 						type={"number"}
 						min={0}
-						max={this.props.context.size}
 						id={"inputTemps"}
+						style={{ width: "5rem" }}
 					/>
 				</label>
 			</div>
