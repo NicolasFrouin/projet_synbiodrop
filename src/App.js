@@ -25,11 +25,6 @@ function App() {
 		console.log(editor.toJSON().nodes);
 	};
 
-	const stop = () => {
-		console.log({ droplets });
-		engine.abort();
-	};
-
 	return (
 		<AppContext.Provider
 			value={{
@@ -89,7 +84,7 @@ function App() {
 									alignItems: "center",
 									marginBlock: "3rem",
 									height: "2rem",
-									width: "50%",
+									width: "30%",
 								}}
 							>
 								<MdPlayArrow
@@ -103,16 +98,6 @@ function App() {
 								>
 								</MdPlayArrow>
 								{/* <Heat /> */}
-								<MdStop
-									className="stop"
-									onClick={stop}
-									style={{
-										backgroundColor: "red",
-										height: "100%",
-										flex: 1,
-									}}
-								>
-								</MdStop>
 							</div>
 						)}
 						<Grid style={{}} utils={utils} setUtils={setUtils}></Grid>
