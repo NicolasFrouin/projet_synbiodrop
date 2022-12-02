@@ -1,13 +1,11 @@
 import "./App.css";
 import ReteMain from "./Rete/ReteMain";
 import Grid from "./Grid/Grid";
-import { createContext, useContext, useEffect, useState } from "react";
-import { Droplet, DropletGroup } from "./class";
-import { Droplet } from "./class";
-import {MdPlayArrow,MdStop} from "react-icons/md";
-// import Heat from "./HeatOld/Heat";
+import { createContext, useEffect, useState } from "react";
+import { MdPlayArrow } from "react-icons/md";
 
 export const AppContext = createContext();
+
 function App() {
 	const [dropletsGroups, setDropletsGroups] = useState([]);
 	const [droplets, setDroplets] = useState([]);
@@ -74,35 +72,33 @@ function App() {
 							boxShadow: "rgba(0, 0, 0, 0.2) 0px 20px 30px",
 						}}
 					>
-						<div style={{display: "grid",justifyItems: "center",margin:"auto"}}>
-						{editor != null && (
-							
-							<div
-								style={{
-									display: "flex",
-									gap: "5rem",
-									justifyContent: "center",
-									alignItems: "center",
-									marginBlock: "3rem",
-									height: "2rem",
-									width: "30%",
-								}}
-							>
-								<MdPlayArrow
-									className="start"
-									onClick={process}
+						<div style={{ display: "grid", justifyItems: "center", margin: "auto" }}>
+							{editor != null && (
+								<div
 									style={{
-										backgroundColor: "green",
-										height: "100%",
-										flex: 1,
+										display: "flex",
+										gap: "5rem",
+										justifyContent: "center",
+										alignItems: "center",
+										marginBlock: "3rem",
+										height: "2rem",
+										width: "30%",
 									}}
 								>
-								</MdPlayArrow>
-								{/* <Heat /> */}
-							</div>
-						)}
-						<Grid style={{}} utils={utils} setUtils={setUtils}></Grid>
-					</div>
+									<MdPlayArrow
+										className="start"
+										onClick={process}
+										style={{
+											backgroundColor: "green",
+											height: "100%",
+											flex: 1,
+										}}
+									></MdPlayArrow>
+									{/* <Heat /> */}
+								</div>
+							)}
+							<Grid style={{}} utils={utils} setUtils={setUtils}></Grid>
+						</div>
 					</div>
 				</div>
 			</div>

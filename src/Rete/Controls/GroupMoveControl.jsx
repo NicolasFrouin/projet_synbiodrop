@@ -5,11 +5,11 @@ class GroupMoveComponent extends React.Component {
 	state = {};
 	componentDidMount() {
 		this.setState({
-			posX: 1,
-			posY: 1,
+			posX: 2,
+			posY: 2,
 		});
-		this.props.putData("posX", 1);
-		this.props.putData("posY", 1);
+		this.props.putData("posX", 2);
+		this.props.putData("posY", 2);
 	}
 	onChange(event, pos) {
 		let value = parseInt(event.target.value);

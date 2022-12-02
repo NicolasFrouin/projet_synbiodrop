@@ -12,7 +12,7 @@ export class Droplet {
 	}
 
 	group(dropletGroup) {
-		this.dropletGroup = dropletGroup;
+		// this.dropletGroup = dropletGroup;
 	}
 
 	draw() {
