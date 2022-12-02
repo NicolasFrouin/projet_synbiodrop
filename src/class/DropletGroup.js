@@ -55,6 +55,7 @@ export class DropletGroup {
 		this.droplets.forEach((d) => {
 			d.group(this);
 			d.changeColor(this.color);
+			$(`#droplet_${d.x + "_" + d.y}`).css('border-radius', '0px');
 		});
 	}
 

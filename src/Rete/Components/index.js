@@ -6,3 +6,4 @@ export { FusionComponent } from "./FusionComponent";
 export { GroupMoveComponent } from "./GroupMoveComponent";
 export { MergeDropletComponent } from "./MergeDropletComponent";
 export { DividerDropletComponent } from "./DividerDropletComponent";
+export { MoveGroupComponent } from "./MoveGroupComponent";

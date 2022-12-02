@@ -75,7 +75,7 @@ const Grid = ({ style = {}, utils, setUtils }) => {
 
 	return (
 		<div className="grid-container" style={style}>
-			<table id="droplet-grid-table">
+			<table id="droplet-grid-table" style={{ borderCollapse:"separate",border:"solid black 1px",borderRadius:"6px",}}>
 				<tbody>
 					{Array.from({ length: size }, (_, n) => size - n).map((trv, tri) => {
 						return (
